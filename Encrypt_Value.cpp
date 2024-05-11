@@ -39,3 +39,8 @@ int32_t main()
 
     return 0;
 }
+
+/*
+addition is beneficial when res is 0, 1, or curr is 1
+else cases product is beneficial
+*/
