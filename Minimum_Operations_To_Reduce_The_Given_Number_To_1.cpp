@@ -12,30 +12,18 @@ void solve()
     cin >> n;
     // /INPUT
 
-    queue<int> q;
-    q.push(n);
-    int res = 0;
-    while (!q.empty())
+    vector<int> dp(n + 1);
+    dp[2] = 1;
+
+    for (int i = 3; i <= n; i++)
     {
-        int sz = q.size();
-        while (sz--)
-        {
-            int f = q.front();
-            q.pop();
-            if (f == 1)
-            {
-                cout << res << endl;
-                return;
-            }
-            q.push(f - 1);
-
-            if (f % 7 == 0)
-                q.push(f / 7);
-        }
-        res++;
+        int c1 = 1 + dp[i - 1],
+            c2 = 1e9;
+        if (i % 7 == 0)
+            c2 = 1 + dp[i / 7];
+        dp[i] = min(c1, c2);
     }
-
-    cout << res << endl;
+    cout << dp[n] << endl;
 }
 
 int32_t main()
